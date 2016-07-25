@@ -19,42 +19,43 @@
     </section>
 
     <section class="main-content">
-      <h1>
-<a id="liquidmenu" class="anchor" href="#liquidmenu" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>LiquidMenu</h1>
+      <p><img src="https://raw.githubusercontent.com/VasilKalchev/LiquidMenu/master/doc/logo.png" alt="logo"></p>
 
-<p><em>Menu creation Arduino library for LCDs, extends <a href="https://github.com/arduino/Arduino/tree/master/libraries/LiquidCrystal"> LiquidCrystal</a>.</em></p>
+<p><em>Menu creation Arduino library for LCDs, extends <a href="https://github.com/arduino-libraries/LiquidCrystal">LiquidCrystal</a>.</em></p>
 
-<p><img src="https://raw.githubusercontent.com/VasilKalchev/LiquidMenu/master/doc/logo.png" alt="logo"></p>
+<p><a href="https://github.com/VasilKalchev/LiquidMenu/releases"><img src="https://img.shields.io/badge/release-1.0.0-yellow.svg" alt="release"></a>
+<a href="https://vasilkalchev.github.io/LiquidMenu/doc/html/annotated.html"><img src="https://img.shields.io/badge/docs-doxygen-green.svg" alt="documentation"></a>
+<a href="https://opensource.org/licenses/mit-license.php"><img src="https://img.shields.io/github/license/mashape/apistatus.svg?maxAge=2592000" alt="license"></a></p>
 
-<p><strong>LiquidMenu</strong> extends the Arduino's LiquidCrystal library with the ability to create menus.
+<p><strong>LiquidMenu</strong> extends the Arduino's <a href="https://github.com/arduino-libraries/LiquidCrystal">LiquidCrystal</a> library with the ability to create menus.
 It simplifies the menu creation process by abstracting the elements of a menu into hierarchically organized classes.</p>
 
-<h2>
-<a id="features" class="anchor" href="#features" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Features</h2>
+<h1>
+<a id="features" class="anchor" href="#features" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Features</h1>
 
 <ul>
-<li>Intuitive menu organization</li>
-<li>Selectable lines</li>
-<li>Callback functions</li>
+<li>Fast and easy menu creation.</li>
+<li>Selectable menu items.</li>
+<li>Callback functions.</li>
 </ul>
 
-<h2>
-<a id="requirements" class="anchor" href="#requirements" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Requirements</h2>
+<h1>
+<a id="requirements" class="anchor" href="#requirements" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Requirements</h1>
 
 <ul>
-<li>The Arduino's <a href="https://github.com/arduino/Arduino/tree/master/libraries/LiquidCrystal"> LiquidCrystal</a> library.</li>
-<li>LCD supported by <a href="https://github.com/arduino/Arduino/tree/master/libraries/LiquidCrystal"> LiquidCrystal</a> (<em>with Hitachi HD44780 or a compatible chipset</em>)</li>
-<li>Arduino board or a compatible microcontroller</li>
-<li>Input device/s is recommended (<em>buttons, rotary encoder, etc.</em>)</li>
+<li>The Arduino's <a href="https://github.com/arduino-libraries/LiquidCrystal">LiquidCrystal</a> library.</li>
+<li>LCD supported by <a href="https://github.com/arduino/Arduino/tree/master/libraries/LiquidCrystal"> LiquidCrystal</a> (<em>with Hitachi HD44780 or a compatible chipset</em>).</li>
+<li>Arduino board or a compatible microcontroller.</li>
+<li>Input device is recommended (<em>buttons, rotary encoder, etc.</em>).</li>
 </ul>
 
-<h2>
-<a id="how-to-use" class="anchor" href="#how-to-use" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>How to use</h2>
+<h1>
+<a id="quick-start" class="anchor" href="#quick-start" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Quick start</h1>
 
 <h3>
 <a id="classes-organization" class="anchor" href="#classes-organization" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Classes organization</h3>
 
-<p>This library uses hierarchically structured classes to represent the different elements of a menu.</p>
+<p>The library uses hierarchically structured classes to represent the different elements of a menu.</p>
 
 <p><em>Basic class hierarchy diagram:</em></p>
 
@@ -62,275 +63,120 @@ It simplifies the menu creation process by abstracting the elements of a menu in
 
 <p><em>Click <a href="https://raw.githubusercontent.com/VasilKalchev/LiquidMenu/master/doc/diagram.png">here</a> for a complete hierarchy diagram.</em></p>
 
-<p>The <strong>LiquidLine</strong> class represents a <strong>line</strong> of text/variables on the display.</p>
+<p>The <strong>LiquidLine</strong> class represents a <strong>line</strong> of text/numbers on the display.
+To create a new <strong>LiquidLine</strong> object use its constructor:</p>
 
 <p>The <strong>LiquidScreen</strong> class represents a collection of <strong>lines</strong> that are shown together at the same time on the display (<em>i.e. "the current screen"</em>).</p>
 
-<p>The <strong>LiquidMenu</strong> class combines the <strong>screens</strong> to form a <strong>menu</strong>. It can switch between the them, call attached functions, etc.</p>
+<p>The <strong>LiquidMenu</strong> class combines the <strong>screens</strong> to form a <strong>menu</strong>. This class is used for controlling the <strong>menu</strong> (<em>switching <strong>screens</strong>, selecting <strong>lines</strong>, calling functions etc.</em>).</p>
 
-<p>The <strong>LiquidSystem</strong> is an optional class that combines <strong>menus</strong> to form a <strong>menu system</strong> (<em>e.g. Main menu, Outputs, Settings, etc.</em>). It has the same public interface as <strong>LiquidMenu</strong>.</p>
+<p>The <strong>LiquidSystem</strong> is an optional class that combines <strong>menus</strong> to form a <strong>menu system</strong> (<em>e.g. Main menu, Settings, etc.</em>). It has the same public interface as <strong>LiquidMenu</strong>.</p>
 
 <h3>
 <a id="creating-a-menu" class="anchor" href="#creating-a-menu" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Creating a menu</h3>
 
 <p>Menu creation is all about structure. First there are variables/constants that go into the <strong>LiquidLine</strong> objects. Then the <strong>LiquidLine</strong> objects go into the <strong>LiquidScreen</strong> objects. Then <strong>LiquidScreen</strong> objects go into the <strong>LiquidMenu</strong> object/s. And optionally the <strong>LiquidMenu</strong> objects go into the <strong>LiquidSystem</strong> object.
-This structure can be established on object instantiation or later with functions:</p>
+This structure can be established on object instantiation or later with the classes' public methods:</p>
 
-<ul>
-<li><code>LiquidLine::LiquidLine(byte column, byte row, A &amp;variableA, B &amp;variableB...); //takes up to 4 variables</code></li>
-<li><code>LiquidScreen::LiquidScreen(LiquidLine &amp;liquidLine1, LiquidLine &amp;liquidLine2...); //takes up to 4 lines</code></li>
-<li><code>LiquidMenu::LiquidMenu(LiquidCrystal &amp;liquidCrystal, LiquidScreen &amp;liquidScreen1, LiquidScreen &amp;liquidScreen2..., byte startingScreen = 1); //takes up to 3 screens</code></li>
-</ul>
+<div class="highlight highlight-source-c++"><pre><span class="pl-c">// Takes column and row for the position and 1 to 4 variable references. These variable</span>
+<span class="pl-c">// references are what is going to be printed on the display. They can be integers used</span>
+<span class="pl-c">// in the program, string literals passed direrctly or a char* for changing text.</span>
+<span class="pl-en">LiquidLine</span>(byte column, byte row, A &amp;variableA...);
 
-<div class="highlight highlight-source-c++"><pre><span class="pl-c">/*</span>
-<span class="pl-c">This example demonstrates how to make a menu of 2 screens and 3 lines.</span>
-<span class="pl-c">*/</span>
+<span class="pl-c">// Takes 0 to 4 LiquidLine objects.</span>
+<span class="pl-en">LiquidScreen</span>(LiquidLine &amp;liquidLine1...);
 
-LiquidCrystal <span class="pl-en">lcd</span>(RS, E, D4, D5, D6, D7);
+<span class="pl-c">// Takes a reference to the LiquidCrystal object, 0 to 4 LiquidScreen objects and</span>
+<span class="pl-c">// the number of the screen that will be shown first.</span>
+<span class="pl-en">LiquidMenu</span>(LiquidCrystal &amp;liquidCrystal, LiquidScreen &amp;liquidScreen1..., byte startingScreen = <span class="pl-c1">1</span>);
 
-<span class="pl-c">// Instantiate a LiquidLine object on column 4, row 0, printing "Hello".</span>
-LiquidLine <span class="pl-en">line1</span>(<span class="pl-c1">4</span>, <span class="pl-c1">0</span>, <span class="pl-s"><span class="pl-pds">"</span>Hello<span class="pl-pds">"</span></span>);
-LiquidLine <span class="pl-en">line2</span>(<span class="pl-c1">4</span>, <span class="pl-c1">1</span>, <span class="pl-s"><span class="pl-pds">"</span>World<span class="pl-pds">"</span></span>);
-<span class="pl-c">// Put the above two lines into a LiquidScreen object.</span>
-LiquidScreen <span class="pl-en">screen1</span>(line1, line2);
-
-<span class="pl-k">int</span> variable1 = <span class="pl-c1">123</span>;
-<span class="pl-c">// Instantiate a line with text and variable.</span>
-LiquidLine <span class="pl-en">var1_line</span>(<span class="pl-c1">0</span>, <span class="pl-c1">0</span>, <span class="pl-s"><span class="pl-pds">"</span>Variable 1: <span class="pl-pds">"</span></span>, variable1);
-<span class="pl-c">// This screen will only have one line.</span>
-LiquidScreen <span class="pl-en">screen2</span>(var1_line);
-
-<span class="pl-c">// The menu object takes a reference to the LiquidCrystal object and the screens.</span>
-LiquidMenu <span class="pl-en">menu</span>(lcd, screen1, screen2);
-</pre></div>
-
-<ul>
-<li><code>LiquidSystem::LiquidSystem(LiquidMenu &amp;liquidMenu1, LiquidMenu &amp;liquidMenu2, byte startingMenu = 1); //takes up to 3 menus</code></li>
-</ul>
-
-<div class="highlight highlight-source-c++"><pre><span class="pl-c">/*</span>
-<span class="pl-c">This example demonstrates how to make a menu system of 3 menus, how to add the</span>
-<span class="pl-c">screens to the menus with functions and how to implement a variable text.</span>
-<span class="pl-c">*/</span>
-
-LiquidCrystal <span class="pl-en">lcd</span>(RS, E, D4, D5, D6, D7);
-
-<span class="pl-c">// Lines can be used in more than one screen.</span>
-LiquidLine <span class="pl-en">back_line</span>(<span class="pl-c1">10</span>, <span class="pl-c1">1</span>, <span class="pl-s"><span class="pl-pds">"</span>-BACK<span class="pl-pds">"</span></span>);
-
-<span class="pl-c">// ---------- MAIN MENU ----------</span>
-<span class="pl-c">// For changing text use char*.</span>
-<span class="pl-k">char</span>* name;
-LiquidLine <span class="pl-en">hello_line</span>(<span class="pl-c1">4</span>, <span class="pl-c1">0</span>, <span class="pl-s"><span class="pl-pds">"</span>Hello<span class="pl-pds">"</span></span>);
-<span class="pl-c">// This will print the text that the variable `name` points to.</span>
-LiquidLine <span class="pl-en">name_line</span>(<span class="pl-c1">4</span>, <span class="pl-c1">1</span>, name);
-LiquidScreen <span class="pl-en">welcome_screen</span>(hello_line, name_line);
-
-<span class="pl-c">// Lines can be used as links to other menus.</span>
-LiquidLine <span class="pl-en">other_sLine</span>(<span class="pl-c1">0</span>, <span class="pl-c1">0</span>, <span class="pl-s"><span class="pl-pds">"</span>-Other<span class="pl-pds">"</span></span>);
-LiquidLine <span class="pl-en">preferences_sLine</span>(<span class="pl-c1">0</span>, <span class="pl-c1">1</span>, <span class="pl-s"><span class="pl-pds">"</span>-Preferences<span class="pl-pds">"</span></span>);
-LiquidScreen <span class="pl-en">shortcuts_screen</span>(other_line, preferences_line);
-
-LiquidMenu <span class="pl-en">main_menu</span>(lcd, welcome_screen, shortcuts_screen);
-<span class="pl-c">// -------------------------------</span>
-
-<span class="pl-c">// ---------- OTHER MENU ----------</span>
-LiquidLine <span class="pl-en">other_line</span>(<span class="pl-c1">0</span>, <span class="pl-c1">0</span>, <span class="pl-s"><span class="pl-pds">"</span>Other menu<span class="pl-pds">"</span></span>);
-LiquidScreen <span class="pl-en">other_screen</span>(other_line, back_line);
-
-LiquidMenu <span class="pl-en">other_menu</span>(lcd, other_screen);
-<span class="pl-c">// --------------------------------</span>
-
-<span class="pl-c">// ---------- PREFERENCES MENU ----------</span>
-LiquidLine <span class="pl-en">pref_line1</span>(<span class="pl-c1">0</span>, <span class="pl-c1">0</span>, <span class="pl-s"><span class="pl-pds">"</span>Prefs menu<span class="pl-pds">"</span></span>);
-LiquidScreen <span class="pl-en">pref_screen</span>(pref_line1, back_line);
-
-<span class="pl-c">// The screen will be added later.</span>
-LiquidMenu <span class="pl-en">pref_menu</span>(lcd);
-<span class="pl-c">// --------------------------------------</span>
-
-
-<span class="pl-c">// The menu system takes references to the menus.</span>
-LiquidSystem <span class="pl-en">menu_system</span>(main_menu, other_menu, pref_menu);
-
-
-<span class="pl-k">void</span> <span class="pl-en">setup</span>() {
-    <span class="pl-c">// Change the variable 'name' so the 'welcome' screen prints "Hello Menu".</span>
-    name = <span class="pl-s"><span class="pl-pds">"</span>Menu<span class="pl-pds">"</span></span>;
-
-    <span class="pl-c">// Add a screen to a menu. The same works for the other object types.</span>
-    pref_menu.<span class="pl-c1">add_screen</span>(pref_screen);
-}
-</pre></div>
+<span class="pl-c">// Takes 0 to 4 LiquidMenu objects and the number of the menu that will be shown first.</span>
+<span class="pl-en">LiquidSystem</span>(LiquidMenu &amp;liquidMenu1..., byte startingMenu = <span class="pl-c1">1</span>);</pre></div>
 
 <h3>
 <a id="navigating-the-menu" class="anchor" href="#navigating-the-menu" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Navigating the menu</h3>
 
-<p>The menu is navigated from the <strong>LiquidMenu</strong> object or if there are multiple menus - the <strong>LiquidSystem</strong> object.</p>
+<p>The menu is navigated from the <strong>LiquidMenu</strong> object or if there are multiple menus - the <strong>LiquidSystem</strong> object. The <strong>screens</strong> can by cycled forward and backward or a specific <strong>screen</strong> can be specified by its object or number.</p>
 
-<ul>
-<li>
-<code>void LiquidMenu::next_screen()</code> - go to the next screen</li>
-<li>
-<code>void LiquidMenu::previous_screen()</code> - go to the previous screen</li>
-<li>
-<code>bool LiquidMenu::change_screen(LiquidScreen &amp;liquidScreen)</code> - go to a specific screen</li>
-</ul>
+<div class="highlight highlight-source-c++"><pre><span class="pl-k">void</span> <span class="pl-en">LiquidMenu::next_screen</span>();
+<span class="pl-k">void</span> <span class="pl-en">LiquidMenu::previous_screen</span>();
+<span class="pl-k">bool</span> <span class="pl-en">LiquidMenu::change_screen</span>(LiquidScreen &amp;liquidScreen);</pre></div>
 
-<div class="highlight highlight-source-c++"><pre>
-<span class="pl-c">/*</span>
-<span class="pl-c">This example demonstrates how to switch to the next/previous screen using some condition.</span>
-<span class="pl-c">*/</span>
+<h3>
+<a id="focus-and-callback-functions" class="anchor" href="#focus-and-callback-functions" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Focus and callback functions</h3>
 
-...
-LiquidMenu <span class="pl-en">menu</span>(lcd, screen1, screen2);
+<p>The <strong>lines</strong> of text/numbers shown on the display can be interactive. Every line can have callback functions attached to it (<em>up to 8 by default</em>). They are attached with a number specified by the user.</p>
+
+<div class="highlight highlight-source-c++"><pre><span class="pl-k">bool</span> <span class="pl-en">LiquidLine::attach_function</span>(byte number, <span class="pl-k">void</span> (*function)(<span class="pl-k">void</span>));</pre></div>
+
+<p>To call a <strong>line's</strong> attached function, the <strong>line</strong> needs to be <strong>focused</strong> (<em>selected</em>). To cycle the <strong>focus</strong> through the <strong>lines</strong> shown on the <strong>screen</strong> use:</p>
+
+<div class="highlight highlight-source-c++"><pre><span class="pl-k">void</span> <span class="pl-en">LiquidMenu::switch_focus</span>(<span class="pl-k">bool</span> forward = <span class="pl-c1">true</span>);</pre></div>
+
+<p>When the <strong>line</strong> is selected one of its attached functions can be called with:</p>
+
+<div class="highlight highlight-source-c++"><pre><span class="pl-k">void</span> <span class="pl-en">LiquidMenu::call_function</span>(byte number);</pre></div>
+
+<p>The <code>number</code> specifies which one of the attached functions should be called.</p>
+
+<p><em>Similar functions can be attached under the same number to different <strong>lines</strong> and then called on a similar events. For example if we are printing on the display the state of four LEDs. The four LEDs are instantiated in four <strong>LiquidLine</strong> objects with their name and their state. The functions used to turn them on can be attached under number 1 and the functions for turning them off - under number 2. Then if we have 3 buttons, one can be used to switch the focus, the second (say 'UP') button can be used to call function 1 and the third (say 'DOWN') button can be used to call function 2.</em></p>
+
+<h3>
+<a id="basic-example" class="anchor" href="#basic-example" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Basic example</h3>
+
+<div class="highlight highlight-source-c++"><pre>...
+<span class="pl-c">// First we need to instantiate the LiquidCrystal object.</span>
+LiquidCrystal <span class="pl-en">lcd</span>(LCD_RS, LCD_E, LCD_D4, LCD_D5, LCD_D6, LCD_D7);
+
+<span class="pl-c">// ----- WELCOME SCREEN -----</span>
+<span class="pl-c">/// Instantiating a line with one string literal.</span>
+LiquidLine <span class="pl-en">welcome_line1</span>(<span class="pl-c1">1</span>, <span class="pl-c1">0</span>, <span class="pl-s"><span class="pl-pds">"</span>Hello Menu<span class="pl-pds">"</span></span>);
+
+<span class="pl-c">/// Instantiating a line with an integer variable.</span>
+byte oneTwoThree = <span class="pl-c1">123</span>;
+LiquidLine <span class="pl-en">welcome_line2</span>(<span class="pl-c1">2</span>, <span class="pl-c1">1</span>, oneTwoThree);
+
+<span class="pl-c">/// Forming a screen from the above two lines.</span>
+LiquidScreen <span class="pl-en">welcome_screen</span>(welcome_line1, welcome_line2);
+<span class="pl-c">// --------------------------</span>
+
+<span class="pl-c">// ----- SCREEN 2 -----</span>
+LiquidLine <span class="pl-en">some_line</span>(<span class="pl-c1">0</span>, <span class="pl-c1">0</span>, <span class="pl-s"><span class="pl-pds">"</span>Some line<span class="pl-pds">"</span></span>);
+LiquidScreen <span class="pl-en">some_screen</span>(some_line);
+<span class="pl-c">// --------------------</span>
+
+<span class="pl-c">// Now let's combine the screens into a menu.</span>
+LiquidMenu <span class="pl-en">my_menu</span>(lcd, welcome_screen, some_screen);
 
 <span class="pl-k">void</span> <span class="pl-en">setup</span>() {
+    lcd.<span class="pl-c1">begin</span>(<span class="pl-c1">16</span>, <span class="pl-c1">2</span>);
     ...
-    <span class="pl-c1">pinMode</span>(rightButton, INPUT);
-    <span class="pl-c1">pinMode</span>(leftButton, INPUT);
 }
 
 <span class="pl-k">void</span> <span class="pl-en">loop</span>() {
-    <span class="pl-c">// Example condition that checks if a button is pressed.</span>
     <span class="pl-k">if</span> (rightButton) {
-        menu.<span class="pl-c1">next_screen</span>();
+        my_menu.<span class="pl-c1">next_screen</span>();
     }
     <span class="pl-k">if</span> (leftButton) {
-        menu.<span class="pl-c1">previous_screen</span>();
+        my_menu.<span class="pl-c1">previous_screen</span>();
     }
-
+    <span class="pl-k">if</span> (somethingElse) {
+        oneTwoThree++;
+        my_menu.<span class="pl-smi">update</span>;
+    }
+    ...
 }
 </pre></div>
 
-<h3>
-<a id="callback-functions" class="anchor" href="#callback-functions" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Callback functions</h3>
+<h1>
+<a id="more-information" class="anchor" href="#more-information" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>More information</h1>
 
-<h4>
-<a id="attaching-a-function" class="anchor" href="#attaching-a-function" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Attaching a function</h4>
+<p><a href="https://vasilkalchev.github.io/LiquidMenu/doc/html/index.html">Documentation</a></p>
 
-<p>Callback functions are attached to some <strong>LiquidLine</strong> object (<em>e.g. <code>LiquidLine led_line(0, 0, "LED: ", ledState);</code></em>) with the <code>LiquidLine::attach_function(byte number, void (*function)(void));</code> function. There can be up to 8 functions by default and the number identifies them. The second parameter takes a pointer to a <code>void function()</code>.</p>
+<p><a href="https://vasilkalchev.github.io/LiquidMenu/doc/html/examples.html">More examples</a></p>
 
-<ul>
-<li><code>LiquidLine::attach_function(byte number, void (*function)(void));</code></li>
-</ul>
-
-<div class="highlight highlight-source-c++"><pre>
-<span class="pl-c">/*</span>
-<span class="pl-c">This example demonstrates how to attach a function to some line. The callback</span>
-<span class="pl-c">function will change a variable and write its value to a pin. It will be</span>
-<span class="pl-c">attached to `led_line` under the number 1.</span>
-<span class="pl-c">*/</span>
-
-...
-<span class="pl-k">const</span> byte ledPin = <span class="pl-c1">3</span>;
-<span class="pl-c">// We need a variable that holds the state.</span>
-byte ledState = <span class="pl-c1">0</span>;
-LiquidLine <span class="pl-en">led_line</span>(<span class="pl-c1">0</span>, <span class="pl-c1">0</span>, <span class="pl-s"><span class="pl-pds">"</span>LED: <span class="pl-pds">"</span></span>, ledState);
-
-<span class="pl-c">/*</span>
-<span class="pl-c">Callback functions for changing some state need to change the variable that</span>
-<span class="pl-c">is printed on the display and in this case write in to the appropriate pin.</span>
-<span class="pl-c">*/</span>
-<span class="pl-k">void</span> <span class="pl-en">inc_led</span>() {
-    ledState += <span class="pl-c1">10</span>;
-    <span class="pl-c1">analogWrite</span>(ledPin, ledState);
-}
-...
-
-<span class="pl-k">void</span> <span class="pl-en">setup</span>() {
-    <span class="pl-c">// The `void inc_led()` function is attached under number 1.</span>
-    led_line.<span class="pl-c1">attach_function</span>(<span class="pl-c1">1</span>, inc_led);
-}
-</pre></div>
-
-<h4>
-<a id="calling-a-function" class="anchor" href="#calling-a-function" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Calling a function</h4>
-
-<p>To call an attached function it needs to be focused (selected) using the <code>LiquidMenu::switch_focus()</code> function. When the function is selected, it can be called with <code>LiquidMenu::call_function(byte functionNumber)</code>.
-Similar functions should be attached with the same number to the different lines. For example 'incrementing functions' can be attached with the number 1, then with a button press (<em>button 'UP' preferably</em>), the focused line's incrementing function will be called.</p>
-
-<ul>
-<li>
-<code>LiquidMenu::switch_focus();</code> - switches the focus to the next line</li>
-<li>
-<code>LiquidMenu::call_function(byte functionNumber);</code> - calls the attached function to the focused line under the specified functionNumber)</li>
-</ul>
-
-<div class="highlight highlight-source-c++"><pre><span class="pl-c">/*</span>
-<span class="pl-c">This example demonstrates how to call an attached function.</span>
-<span class="pl-c">*/</span>
-...
-<span class="pl-k">void</span> <span class="pl-en">loop</span>() {
-    <span class="pl-c">// We need to be able to move the focus between the lines.</span>
-    <span class="pl-k">if</span> (middleButton) {
-        menu.<span class="pl-c1">switch_focus</span>();
-    }
-    <span class="pl-c">// If the 'UP' button is pressed - call the function</span>
-    <span class="pl-c">// identified as 1 for the focused line.</span>
-    <span class="pl-k">if</span> (upButton) {
-        menu.<span class="pl-c1">call_function</span>(<span class="pl-c1">1</span>);
-    }
-}</pre></div>
-
-<h3>
-<a id="customizing-the-focus-indicator" class="anchor" href="#customizing-the-focus-indicator" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Customizing the focus indicator</h3>
-
-<p>The <strong>focus indicator</strong> on default appears just after the line.
-It can be configured to appear before the line or in a custom absolute position.
-If it appears after the line the symbol used is '&lt;', before the line - '&gt;', in a custom position - the symbol a square. These symbols can be changed individually.</p>
-
-<ul>
-<li>
-<code>LiquidLine::set_focusPosition(Position position, byte column = 0, byte row = 0);</code> - <code>Position</code> is an enum class that has <code>RIGHT</code>, <code>LEFT</code> and <code>CUSTOM</code> as parameters, if the position is <code>CUSTOM</code> then the column and the row needs to be specified</li>
-<li>
-<code>LiquidScreen::set_focusPosition(Position position);</code> - the focus position can be changed for the whole screen at once (<em>it can't be changed to <code>CUSTOM</code> because it needs individual coordinates</em>)</li>
-<li>
-<code>LiquidMenu::set_focusPosition(Position position);</code> - change the focus position for the whole menu at once</li>
-<li><p><code>LiquidSystem::set_focusPosition(Position position);</code> - change the focus position for the whole menu system at once</p></li>
-<li><p><code>LiquidMenu::set_focusSymbol(Position position, byte symbol[8])</code> - this changes the focus symbol for a particular position</p></li>
-<li>
-<code>LiquidMenu::set_focusSymbol(Position position, byte symbol[8])</code> - equivalent (because of the way the symbol is stored)</li>
-</ul>
-
-<div class="highlight highlight-source-c++"><pre><span class="pl-c">/*</span>
-<span class="pl-c">This example demonstrates how to customize the focus indicator position and appearance.</span>
-<span class="pl-c">*/</span>
-...
-<span class="pl-c">// Indicator symbol definition. Create a new one from [here](http://omerk.github.io/lcdchargen/).</span>
-byte lFocus[<span class="pl-c1">8</span>] = {
-    <span class="pl-c1">0b00000</span>,
-    <span class="pl-c1">0b00000</span>,
-    <span class="pl-c1">0b00100</span>,
-    <span class="pl-c1">0b01110</span>,
-    <span class="pl-c1">0b00100</span>,
-    <span class="pl-c1">0b00000</span>,
-    <span class="pl-c1">0b00000</span>,
-    <span class="pl-c1">0b00000</span>
-};
-
-<span class="pl-k">void</span> <span class="pl-en">setup</span>() {
-    <span class="pl-c">// Set the focus position for `line1` to `CUSTOM`.</span>
-    line1.<span class="pl-c1">set_focusPosition</span>(Position::CUSTOM, <span class="pl-c1">3</span>, <span class="pl-c1">0</span>);
-    <span class="pl-c">// Set the focus position for `screen2` to `LEFT`.</span>
-    screen2.<span class="pl-c1">set_focusPosition</span>(Position::LEFT);
-
-    <span class="pl-c">// Change the left focus indicator symbol to the specified one.</span>
-    menu.<span class="pl-c1">set_focusSymbol</span>(Position::LEFT, lFocus);
-}
-</pre></div>
-
-<p>More examples are available [here][].</p>
-
-<h2>
-<a id="more-information" class="anchor" href="#more-information" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>More information</h2>
-
-<p><a href="https://github.com/VasilKalchev/LiquidMenu/doc/html/examples.html">Examples</a></p>
-
-<p><a href="https://github.com/VasilKalchev/LiquidMenu/doc/html">Documentation</a></p>
-
-<h2>
-<a id="license" class="anchor" href="#license" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>License</h2>
+<h1>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>License</h1>
 
 <p>The MIT License (MIT)</p>
 
