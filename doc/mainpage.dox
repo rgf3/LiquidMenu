@@ -1,5 +1,12 @@
 /**
 @mainpage LiquidMenu
+[Class documentation][lc_classes]
+[Examples][docs_examples]
+[Git page](https://github.com/VasilKalchev/LiquidMenu)
+[Web site](https://vasilkalchev.github.io/LiquidMenu/)
+
+[docs_classes]: https://vasilkalchev.github.io/LiquidMenu/doc/html/annotated.html
+[docs_examples]: https://vasilkalchev.github.io/LiquidMenu/doc/html/examples.html
 */
 
 /**
